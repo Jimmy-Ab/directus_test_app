@@ -1,6 +1,6 @@
 # Directus Test App
 
-This is a test application built with [Directus](https://directus.io/), a powerful, open-source data platform that connects your database to various frontends and applications seamlessly. The project serves as a demonstration or sandbox for experimenting with Directus features.
+This is a test application built with [Directus](https://directus.io/), a powerful, open-source data platform that connects your database to various frontends and applications seamlessly. The project serves as a demonstration for experimenting with Directus features.
 
 # Features
 - API-first CMS for managing structured content.
@@ -21,7 +21,7 @@ Prerequisites
 1. Clone the Repository
    
 ```bash
-git clone https://github.com/your-username/directus-test-app.git
+git clone https://github.com/Jimmy-ab/directus-test-app.git
 cd directus-test-app
 ```
 2. Install Dependencies
@@ -34,7 +34,7 @@ npm install
 DATABASE_CLIENT=mysql2
 DATABASE_HOST=127.0.0.1
 DATABASE_PORT=3306
-DATABASE_NAME=directus_test
+DATABASE_NAME=directus_app_db
 DATABASE_USER=root
 DATABASE_PASSWORD=your_password
 KEY=your_generated_key
@@ -45,7 +45,7 @@ KEY=your_generated_key
 npx directus database migrate
 ```
 
-# Running the App
+# Running the Directus App
 1. Start the Server
 ```bash
 npx directus start
@@ -69,6 +69,66 @@ http://localhost:8055
 | ```bash npm install ``` | Install dependencies. | 
 | ```bash npx directus database migrate ``` | Run migrations to set up the database. |
 | ```bash npx directus start ``` | Start the Directus server. |
+
+# Running Node Server
+1. Install Dependencies
+Install the required packages:
+
+
+```bash 
+npm install express mysql2 dotenv
+```
+- express: Web framework for Node.js.
+- mysql2: MySQL client for Node.js.
+- dotenv: For environment variable management.
+
+
+
+## Set Up MySQL
+1. Install MySQL if you don’t already have it installed.
+2. Create the database and a users table:
+
+```bash
+CREATE DATABASE directus_app_db;
+
+USE directus_app_db;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100)
+);
+```
+
+```bash
+
+INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com');
+INSERT INTO users (name, email) VALUES ('Jane Doe', 'jane@example.com');
+```
+
+Step 5: Run the Application
+Start the server on another terminal
+:
+
+```bash
+node server.js
+```
+
+Test the application:
+
+Open your browser or use Postman and visit:
+http://localhost:3000/ to see the "Hello, Express with MySQL!" message.
+http://localhost:3000/users to see the list of users fetched from the MySQL database.
+
+
+
+
+Endpoints
+```bash
+GET /: Returns a greeting message.
+GET /users: Fetches all users from the users table.
+```
+
 
 # Troubleshooting
 ## Common Issues
